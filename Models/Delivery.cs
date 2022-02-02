@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Transport.Models
 {
-    public class Order
+    public class Delivery
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        public List<Product> Products { get; set; }
+        public List<int> ProductsId { get; set; }
         public Address DeliveryAddress { get; set; }
         public string PaymentStatus { get; set; }
         public string DeliveryStatus { get; set; }

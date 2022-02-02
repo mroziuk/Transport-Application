@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Transport.Product>
+@{
+    ViewBag.Title = "";
+    var grid = new WebGrid(Model);
+}
+
+<h2>Stronicowanie i sortowanie po stronie serwera</h2>
+
+@grid.GetHtml()

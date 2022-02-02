@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="databaseDelivery" Class="LinqRepositoryDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(localdb)\LocalDB;Initial Catalog=databaseDelivery;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="databaseDeliveryConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="CreateAccount" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AddressId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_Delivery" Member="Deliveries" ThisKey="Id" OtherKey="Id" Type="Delivery" />
+      <Association Name="Address_Customer" Member="Address" ThisKey="AddressId" OtherKey="Id" Type="Address" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Address" Member="Addresses">
+    <Type Name="Address">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="Street" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Address_Customer" Member="Customers" ThisKey="Id" OtherKey="AddressId" Type="Customer" />
+      <Association Name="Address_Delivery" Member="Deliveries" ThisKey="Id" OtherKey="AddressId" Type="Delivery" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Delivery" Member="Deliveries">
+    <Type Name="Delivery">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AddressId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PaymentStatus" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="DeliveryStatus" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Delivery_DeliveryProduct" Member="DeliveryProducts" ThisKey="Id" OtherKey="DeliveryId" Type="DeliveryProduct" />
+      <Association Name="Address_Delivery" Member="Address" ThisKey="AddressId" OtherKey="Id" Type="Address" IsForeignKey="true" />
+      <Association Name="Customer_Delivery" Member="Customer" ThisKey="Id" OtherKey="Id" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_DeliveryProduct" Member="DeliveryProducts" ThisKey="Id" OtherKey="ProductId" Type="DeliveryProduct" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeliveryProduct" Member="DeliveryProducts">
+    <Type Name="DeliveryProduct">
+      <Column Name="DeliveryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_DeliveryProduct" Member="Product" ThisKey="ProductId" OtherKey="Id" Type="Product" IsForeignKey="true" />
+      <Association Name="Delivery_DeliveryProduct" Member="Delivery" ThisKey="DeliveryId" OtherKey="Id" Type="Delivery" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
