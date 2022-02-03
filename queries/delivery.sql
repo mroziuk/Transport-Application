@@ -17,3 +17,11 @@ create table DeliveryProduct
 	DeliveryId int,
 	ProductId int
 )
+
+insert into Delivery(CustomerId, AddressId, CreateTime,PaymentStatus, DeliveryStatus) values
+(3,1, GETDATE(), 'blik', 'ordered'),
+(2,2, GETDATE(), 'blik', 'ordered'),
+(1,2, GETDATE(), 'blik', 'ordered'),
+(1,1, GETDATE(), 'blik', 'ordered');
+
+select * from Delivery 

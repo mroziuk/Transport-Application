@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Transport.Product>
+﻿@model IEnumerable<Transport.Delivery>
 @{
     ViewBag.Title = "";
     var grid = new WebGrid(Model);
 }
 
 <h2>Stronicowanie i sortowanie po stronie serwera</h2>
-<h3>Products</h3>
+<h3>Delivery</h3>
 
 @grid.GetHtml()

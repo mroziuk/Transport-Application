@@ -15,5 +15,12 @@ namespace Transport.Controllers
             var model = ProductRepository.GetAll();
             return View(model);
         }
+        [Route("Product/Add/{Name}")]
+        public ActionResult Add(string Name)
+        {
+            UnitOfWork.context.Products.InsertOnSubmit(new Product { Name = Name });
+            UnitOfWork.context.SubmitChanges();
+            return Content("succesfully added:" + Name);
+        }
     }
 }
