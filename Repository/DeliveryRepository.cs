@@ -11,5 +11,9 @@ namespace Transport.Repository
         {
             return UnitOfWork.context.Deliveries.ToList();
         }
+        public static List<Delivery> GetByName(string username)
+        {
+            return UnitOfWork.context.Deliveries.Where(d => d.Customer.Email.Equals(username)).ToList();
+        }
     }
 }

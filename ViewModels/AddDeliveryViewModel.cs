@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Transport.Models
+namespace Transport.ViewModels
 {
-    public class Delivery
+    public class AddDeliveryViewModel
     {
-        public int Id { get; set; }
+        public int AddressFromId { get; set; }
+        public int AddressToId { get; set; }
         public int CustomerId { get; set; }
-        public List<int> ProductsId { get; set; }
-        public Address DeliveryAddress { get; set; }
         public string PaymentStatus { get; set; }
         public string DeliveryStatus { get; set; }
-        public DateTime CreateTime { get; set; }
     }
 }

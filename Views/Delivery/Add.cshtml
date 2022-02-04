@@ -1,0 +1,43 @@
+﻿@model Transport.ViewModels.AddDeliveryViewModel
+@{
+    ViewBag.Title = "Add Delivery";
+}
+
+<h2>Add Delivery</h2>
+<div>
+    @using(Html.BeginForm("Add", "Delivery"))
+    {
+        <div style="color:red;">@Html.ValidationSummary()</div>
+        <div class="row">
+            <!--Show details are saved successfully message-->
+            <div class="col-lg-12">@ViewBag.Message</div>
+        </div><br />
+
+        <div class="row">
+            <div class="col-lg-2">@Html.LabelFor(a => a.AddressFromId)</div>
+            <div class="col-lg-10">@Html.TextBoxFor(a => a.AddressFromId, new { @class = "form-control" })</div>
+        </div><br />
+        <div class="row">
+            <div class="col-lg-2">@Html.LabelFor(a => a.AddressToId)</div>
+            <div class="col-lg-10">@Html.TextBoxFor(a => a.AddressToId, new { @class = "form-control" })</div>
+        </div><br />
+        if(User.IsInRole("admin"))
+        {
+            <div class="row">
+                <div class="col-lg-2">@Html.LabelFor(a => a.CustomerId)</div>
+                <div class="col-lg-10">@Html.TextBoxFor(a => a.CustomerId, new { @class = "form-control" })</div>
+            </div><br />
+        }
+
+        <div class="row">
+            <div class="col-lg-2">@Html.LabelFor(a => a.PaymentStatus)</div>
+            <div class="col-lg-10">@Html.TextBoxFor(a => a.PaymentStatus, new { @class = "form-control" })</div>
+        </div><br />
+        <div class="row">
+            <div class="col-lg-2">@Html.LabelFor(a => a.DeliveryStatus)</div>
+            <div class="col-lg-10">@Html.TextBoxFor(a => a.DeliveryStatus, new { @class = "form-control" })</div>
+        </div><br />
+        <input type="submit" value="Zapisz" class="btn btn-primary" />
+    }
+
+</div>
